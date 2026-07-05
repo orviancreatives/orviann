@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orvian Creatives — Creators First. Deals Second.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #060504;
+    --black-2: #0e0c0a;
+    --black-3: #171310;
+    --gold-1: #f4e5a1;
+    --gold-2: #d4af37;
+    --gold-3: #a8791f;
+    --gold-line: rgba(212,175,55,0.35);
+    --ivory: #f3ece0;
+    --grey: #948c7c;
+    --gap: clamp(1.2rem, 4vw, 3rem);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--ivory);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+    font-weight:400;
+  }
+
+  ::selection{background:var(--gold-2);color:#0a0a0a;}
+
+  a{color:inherit;text-decoration:none;}
+
+  .display{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.92;
+  }
+
+  .gold-text{
+    background:linear-gradient(115deg, var(--gold-3) 0%, var(--gold-1) 35%, var(--gold-2) 60%, var(--gold-1) 85%);
+    background-size:250% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 7s linear infinite;
+  }
+  @keyframes shine{
+    0%{background-position:0% 50%;}
+    100%{background-position:250% 50%;}
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px;height:1px;
+    background:var(--gold-2);
+    display:inline-block;
+  }
+
+  /* ===== noise / grain overlay ===== */
+  .grain{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  /* ===== nav ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.3rem clamp(1.2rem,5vw,4rem);
+    background:linear-gradient(to bottom, rgba(6,5,4,0.9), transparent);
+    backdrop-filter:blur(6px);
+    transition:padding 0.3s ease, background 0.3s ease;
+  }
+  header.scrolled{
+    padding:0.8rem clamp(1.2rem,5vw,4rem);
+    background:rgba(6,5,4,0.85);
+    border-bottom:1px solid var(--gold-line);
+  }
+  .logo-mark{
+    display:flex;align-items:center;gap:0.7rem;
+    font-family:'Anton',sans-serif;
+    font-size:1.15rem;
+    letter-spacing:0.12em;
+  }
+  .logo-mark svg{width:32px;height:32px;display:block;}
+
+  nav ul{
+    display:flex;gap:clamp(1rem,3vw,2.4rem);
+    list-style:none;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  nav ul li a{
+    position:relative;
+    padding-bottom:4px;
+    opacity:0.85;
+    transition:opacity 0.25s;
+  }
+  nav ul li a::after{
+    content:'';
+    position:absolute;left:0;bottom:0;
+    width:0%;height:1px;
+    background:var(--gold-2);
+    transition:width 0.3s ease;
+  }
+  nav ul li a:hover{opacity:1;}
+  nav ul li a:hover::after{width:100%;}
+
+  .nav-cta{
+    border:1px solid var(--gold-2);
+    padding:0.55rem 1.3rem;
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:all 0.3s ease;
+  }
+  .nav-cta:hover{
+    background:var(--gold-2);
+    color:#0a0806;
+    box-shadow:0 0 22px rgba(212,175,55,0.45);
+  }
+
+  .burger{display:none;}
+
+  /* ===== hero ===== */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:7rem 1.2rem 4rem;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:-20%;left:50%;
+    transform:translateX(-50%);
+    width:120vw;height:120vw;
+    max-width:1400px;max-height:1400px;
+    background:radial-gradient(circle, rgba(212,175,55,0.13) 0%, rgba(212,175,55,0.03) 40%, transparent 70%);
+    pointer-events:none;
+  }
+
+  .hero-ring{
+    position:relative;
+    width:min(46vw, 220px);
+    height:min(46vw, 220px);
+    margin-bottom:1.6rem;
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+  .hero-ring svg{width:100%;height:100%;filter:drop-shadow(0 0 30px rgba(212,175,55,0.35));}
+
+  .hero h1{
+    font-size:clamp(2.6rem, 9vw, 6.6rem);
+    max-width:16ch;
+  }
+  .hero .sub{
+    margin-top:1.6rem;
+    font-size:clamp(1rem,2vw,1.25rem);
+    color:var(--grey);
+    max-width:42ch;
+    font-weight:300;
+  }
+  .hero .sub b{color:var(--ivory);font-weight:500;}
+
+  .hero-ctas{
+    margin-top:2.6rem;
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .btn-primary, .btn-ghost{
+    padding:0.95rem 2.1rem;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    border-radius:2px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(100deg, var(--gold-3), var(--gold-1), var(--gold-2));
+    background-size:200% 100%;
+    color:#0a0806;
+    border:none;
+  }
+  .btn-primary:hover{
+    background-position:100% 0;
+    box-shadow:0 0 30px rgba(212,175,55,0.45);
+    transform:translateY(-2px);
+  }
+  .btn-ghost{
+    background:transparent;
+    border:1px solid rgba(243,236,224,0.3);
+    color:var(--ivory);
+  }
+  .btn-ghost:hover{
+    border-color:var(--gold-2);
+    color:var(--gold-1);
+  }
+
+  .marquee-strip{
+    margin-top:4.5rem;
+    width:100%;
+    overflow:hidden;
+    border-top:1px solid var(--gold-line);
+    border-bottom:1px solid var(--gold-line);
+    padding:0.9rem 0;
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    gap:3rem;
+    animation:scroll-left 26s linear infinite;
+  }
+  .marquee-track span{
+    font-size:0.78rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--grey);
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:3rem;
+  }
+  .marquee-track span::after{
+    content:'✦';
+    color:var(--gold-2);
+  }
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ===== section shell ===== */
+  section{
+    position:relative;
+    padding:clamp(4rem,10vw,8rem) clamp(1.2rem,6vw,5rem);
+  }
+  .section-inner{max-width:1240px;margin:0 auto;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:clamp(2.5rem,6vw,4.5rem);
+  }
+  .section-head h2{
+    margin-top:0.9rem;
+    font-size:clamp(2rem,5vw,3.4rem);
+  }
+  .section-head p{
+    margin-top:1.1rem;
+    color:var(--grey);
+    font-size:1.02rem;
+    font-weight:300;
+    line-height:1.6;
+    max-width:52ch;
+  }
+
+  /* diagonal slash divider - signature element */
+  .slash-divider{
+    position:relative;
+    height:120px;
+    margin:0 auto;
+    max-width:1240px;
+  }
+  .slash-divider svg{width:100%;height:100%;}
+
+  /* ===== about ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:clamp(2rem,5vw,4rem);
+    align-items:start;
+  }
+  .about-copy p{
+    color:var(--grey);
+    font-weight:300;
+    line-height:1.75;
+    font-size:1.02rem;
+    margin-bottom:1.2rem;
+  }
+  .about-copy p b{color:var(--gold-1);font-weight:500;}
+  .stat-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--gold-line);
+    border:1px solid var(--gold-line);
+  }
+  .stat-card{
+    background:var(--black-2);
+    padding:1.8rem 1.4rem;
+    transition:background 0.3s ease;
+  }
+  .stat-card:hover{background:var(--black-3);}
+  .stat-card .num{
+    font-family:'Anton',sans-serif;
+    font-size:2.3rem;
+  }
+  .stat-card .label{
+    margin-top:0.4rem;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--grey);
+  }
+
+  /* ===== how we work — process ===== */
+  .process{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--gold-line);
+    border:1px solid var(--gold-line);
+  }
+  .process-step{
+    background:var(--black-2);
+    padding:2.4rem 2rem;
+    position:relative;
+    transition:transform 0.35s ease, background 0.35s ease;
+  }
+  .process-step:hover{
+    background:var(--black-3);
+    transform:translateY(-6px);
+  }
+  .process-step .tag{
+    font-family:'Anton',sans-serif;
+    font-size:0.85rem;
+    color:var(--gold-2);
+    letter-spacing:0.08em;
+  }
+  .process-step h3{
+    margin-top:0.9rem;
+    font-size:1.3rem;
+    font-weight:600;
+  }
+  .process-step p{
+    margin-top:0.7rem;
+    color:var(--grey);
+    font-weight:300;
+    font-size:0.94rem;
+    line-height:1.6;
+  }
+  .process-step .icon{
+    width:38px;height:38px;
+    margin-bottom:0.4rem;
+  }
+  .process-step .icon svg{width:100%;height:100%;stroke:var(--gold-2);}
+
+  /* ===== creator space ===== */
+  .creator-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:1.4rem;
+  }
+  .creator-card{
+    background:var(--black-2);
+    border:1px solid var(--gold-line);
+    border-radius:4px;
+    overflow:hidden;
+    position:relative;
+    transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .creator-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--gold-2);
+    box-shadow:0 18px 40px rgba(0,0,0,0.5), 0 0 24px rgba(212,175,55,0.15);
+  }
+  .creator-avatar{
+    aspect-ratio:1/1;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;
+    font-size:2.4rem;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(212,175,55,0.25), transparent 60%),
+      linear-gradient(155deg, #1c1712, #0a0806 70%);
+    color:var(--gold-1);
+    position:relative;
+  }
+  .creator-avatar::after{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(120deg, transparent 40%, rgba(212,175,55,0.12) 50%, transparent 60%);
+    background-size:250% 250%;
+    background-position:0 0;
+    transition:background-position 0.6s ease;
+  }
+  .creator-card:hover .creator-avatar::after{background-position:100% 100%;}
+  .creator-info{padding:1rem 1.1rem 1.2rem;}
+  .creator-info h4{font-size:1.02rem;font-weight:600;}
+  .creator-info .niche{
+    margin-top:0.2rem;
+    font-size:0.78rem;
+    color:var(--gold-2);
+    letter-spacing:0.04em;
+  }
+  .creator-info .followers{
+    margin-top:0.5rem;
+    font-size:0.78rem;
+    color:var(--grey);
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid rgba(243,236,224,0.08);
+    padding-top:0.6rem;
+  }
+  .placeholder-note{
+    margin-top:2rem;
+    font-size:0.8rem;
+    color:var(--grey);
+    font-style:italic;
+    opacity:0.75;
+  }
+
+  /* ===== brand space ===== */
+  .brand-belt{
+    border-top:1px solid var(--gold-line);
+    border-bottom:1px solid var(--gold-line);
+    padding:2.6rem 0;
+    overflow:hidden;
+  }
+  .brand-track{
+    display:flex;
+    width:max-content;
+    gap:clamp(3rem,6vw,5rem);
+    animation:scroll-left 30s linear infinite;
+    align-items:center;
+  }
+  .brand-track.reverse{animation-direction:reverse;animation-duration:34s;}
+  .brand-chip{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    font-family:'Anton',sans-serif;
+    font-size:1.4rem;
+    letter-spacing:0.03em;
+    color:var(--grey);
+    opacity:0.55;
+    transition:opacity 0.3s ease, color 0.3s ease;
+    white-space:nowrap;
+  }
+  .brand-chip:hover{opacity:1;color:var(--gold-1);}
+  .brand-chip .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--gold-2);
+  }
+
+  /* ===== trust space ===== */
+  .trust-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:1.4rem;
+  }
+  .trust-card{
+    aspect-ratio:4/3;
+    border:1px dashed var(--gold-line);
+    border-radius:6px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:0.7rem;
+    padding:1.4rem;
+    background:
+      repeating-linear-gradient(135deg, rgba(212,175,55,0.035) 0 2px, transparent 2px 14px),
+      var(--black-2);
+    transition:border-color 0.3s ease, background 0.3s ease;
+  }
+  .trust-card:hover{border-color:var(--gold-2);background:var(--black-3);}
+  .trust-card .icon{width:34px;height:34px;stroke:var(--gold-2);opacity:0.85;}
+  .trust-card .txt{font-size:0.82rem;color:var(--grey);max-width:22ch;}
+  .trust-card .txt b{color:var(--gold-1);display:block;font-weight:600;font-size:0.92rem;margin-bottom:0.2rem;}
+
+  .testimonial-row{
+    margin-top:3rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.4rem;
+  }
+  .testimonial{
+    background:var(--black-2);
+    border-left:2px solid var(--gold-2);
+    padding:1.6rem 1.7rem;
+    border-radius:0 4px 4px 0;
+  }
+  .testimonial p{
+    font-size:0.95rem;
+    color:var(--ivory);
+    font-weight:300;
+    line-height:1.6;
+    font-style:italic;
+  }
+  .testimonial .who{
+    margin-top:1rem;
+    font-size:0.8rem;
+    color:var(--gold-2);
+    letter-spacing:0.05em;
+  }
+
+  /* ===== CTA band ===== */
+  .cta-band{
+    text-align:center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(212,175,55,0.14), transparent 60%),
+      var(--black-2);
+    border-top:1px solid var(--gold-line);
+    border-bottom:1px solid var(--gold-line);
+  }
+  .cta-band h2{
+    font-size:clamp(2.2rem,6vw,4.2rem);
+    max-width:16ch;
+    margin:0 auto;
+  }
+  .cta-band p{
+    margin:1.2rem auto 0;
+    color:var(--grey);
+    max-width:48ch;
+    font-weight:300;
+  }
+  .cta-band .hero-ctas{margin-top:2.4rem;}
+
+  /* ===== footer ===== */
+  footer{
+    padding:3.5rem clamp(1.2rem,6vw,5rem) 2rem;
+  }
+  .footer-top{
+    display:flex;
+    flex-wrap:wrap;
+    gap:2.5rem;
+    justify-content:space-between;
+    padding-bottom:2.5rem;
+    border-bottom:1px solid var(--gold-line);
+  }
+  .footer-brand .logo-mark{margin-bottom:0.8rem;}
+  .footer-brand p{
+    color:var(--grey);
+    font-size:0.88rem;
+    max-width:30ch;
+    font-weight:300;
+    line-height:1.6;
+  }
+  .footer-cols{
+    display:flex;
+    gap:clamp(2rem,6vw,5rem);
+    flex-wrap:wrap;
+  }
+  .footer-col h5{
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    margin-bottom:1rem;
+  }
+  .footer-col a, .footer-col p{
+    display:block;
+    font-size:0.88rem;
+    color:var(--grey);
+    margin-bottom:0.65rem;
+    transition:color 0.25s;
+  }
+  .footer-col a:hover{color:var(--gold-1);}
+  .footer-bottom{
+    padding-top:1.6rem;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:0.8rem;
+    font-size:0.78rem;
+    color:var(--grey);
+  }
+
+  /* ===== email modal ===== */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(6,5,4,0.85);
+    backdrop-filter:blur(6px);
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:1.2rem;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+  .modal-overlay.open{opacity:1;pointer-events:auto;}
+  .modal-box{
+    background:var(--black-2);
+    border:1px solid var(--gold-line);
+    border-radius:6px;
+    padding:2.4rem clamp(1.6rem,5vw,2.8rem);
+    max-width:420px;
+    width:100%;
+    text-align:center;
+    position:relative;
+    transform:translateY(18px) scale(0.97);
+    transition:transform 0.35s cubic-bezier(.16,.84,.44,1);
+    box-shadow:0 30px 70px rgba(0,0,0,0.6), 0 0 40px rgba(212,175,55,0.08);
+  }
+  .modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
+  .modal-close{
+    position:absolute;
+    top:0.9rem;right:0.9rem;
+    width:30px;height:30px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--gold-line);
+    border-radius:50%;
+    cursor:pointer;
+    color:var(--grey);
+    font-size:1rem;
+    transition:all 0.25s ease;
+  }
+  .modal-close:hover{border-color:var(--gold-2);color:var(--gold-1);}
+  .modal-box .icon-circle{
+    width:52px;height:52px;
+    margin:0 auto 1.2rem;
+    border-radius:50%;
+    border:1px solid var(--gold-line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .modal-box .icon-circle svg{width:24px;height:24px;stroke:var(--gold-2);}
+  .modal-box h3{
+    font-family:'Anton',sans-serif;
+    font-size:1.4rem;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+  .modal-box p.hint{
+    margin-top:0.6rem;
+    color:var(--grey);
+    font-size:0.88rem;
+    font-weight:300;
+  }
+  .email-pill{
+    margin-top:1.6rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.8rem;
+    border:1px solid var(--gold-line);
+    border-radius:4px;
+    padding:0.85rem 1.1rem;
+    background:var(--black-3);
+  }
+  .email-pill span{
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    color:var(--ivory);
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .copy-btn{
+    flex-shrink:0;
+    border:1px solid var(--gold-2);
+    background:transparent;
+    color:var(--gold-1);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:0.5rem 0.85rem;
+    border-radius:3px;
+    cursor:pointer;
+    transition:all 0.25s ease;
+  }
+  .copy-btn:hover{background:var(--gold-2);color:#0a0806;}
+  .copy-btn.copied{background:var(--gold-2);color:#0a0806;}
+  .modal-box .modal-cta{
+    margin-top:1.4rem;
+    display:inline-block;
+  }
+
+  /* ===== reveal on scroll ===== */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.8s cubic-bezier(.16,.84,.44,1), transform 0.8s cubic-bezier(.16,.84,.44,1);
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+
+  /* ===== responsive ===== */
+  @media (max-width:900px){
+    .about-grid{grid-template-columns:1fr;}
+    .process{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    nav{display:none;}
+    .nav-cta{display:none;}
+    .burger{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+      z-index:120;
+    }
+    .burger span{width:24px;height:2px;background:var(--gold-2);display:block;}
+    .mobile-menu{
+      position:fixed;inset:0;
+      background:rgba(6,5,4,0.98);
+      z-index:110;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:2rem;
+      transform:translateY(-100%);
+      transition:transform 0.4s ease;
+    }
+    .mobile-menu.open{transform:translateY(0);}
+    .mobile-menu a{
+      font-family:'Anton',sans-serif;
+      font-size:1.6rem;
+      text-transform:uppercase;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- ===== NAV ===== -->
+<header id="siteHeader">
+  <div class="logo-mark">
+    <svg viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#a8791f"/>
+          <stop offset="50%" stop-color="#f4e5a1"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="34" stroke="url(#lg1)" stroke-width="7"/>
+      <line x1="24" y1="80" x2="80" y2="18" stroke="url(#lg1)" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+    ORVIAN
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#creators">Creators</a></li>
+      <li><a href="#brands">Brands</a></li>
+      <li><a href="#trust">Proof</a></li>
+    </ul>
+  </nav>
+  <a href="#contact" class="nav-cta">Get Started</a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#process">Process</a>
+  <a href="#creators">Creators</a>
+  <a href="#brands">Brands</a>
+  <a href="#trust">Proof</a>
+  <a href="#contact">Get Started</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-ring">
+    <svg viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#a8791f"/>
+          <stop offset="50%" stop-color="#f4e5a1"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="34" stroke="url(#lg2)" stroke-width="6"/>
+      <line x1="22" y1="82" x2="82" y2="16" stroke="url(#lg2)" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <span class="eyebrow">Orvian Creatives</span>
+  <h1 class="display" style="margin-top:0.9rem;">Creators First. <span class="gold-text">Deals Second.</span></h1>
+  <p class="sub">We're the bridge between rising creators and the brands who need them. <b>No gatekeeping. No cold DMs into the void.</b> Just real deals, run right.</p>
+  <div class="hero-ctas">
+    <a href="apply.html" class="btn-primary">Apply As A Creator</a>
+    <a href="partner.html" class="btn-ghost">Partner With Us</a>
+  </div>
+
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>Built For Creators</span>
+      <span>Backed By Brands</span>
+      <span>Zero Gatekeeping</span>
+      <span>Deals That Deliver</span>
+      <span>Built For Creators</span>
+      <span>Backed By Brands</span>
+      <span>Zero Gatekeeping</span>
+      <span>Deals That Deliver</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Who We Are</span>
+      <h2 class="display">The Agency Behind The <span class="gold-text">Next Wave</span> Of Creators.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p>Orvian Creatives is a social media management agency built on one belief: <b>talent shouldn't need a following of a million to get a real brand deal.</b> We work with creators who are just getting started, the ones with the eye, the voice, and the content, but not yet the industry connections.</p>
+        <p>We do the unglamorous part so you don't have to. We <b>pitch you directly to brands</b>, negotiate the terms, and connect you with deals that actually match your niche, your audience, and your energy. You focus on creating. We focus on getting you paid for it.</p>
+        <p>No inflated promises, no "influencer marketing" buzzwords. Just a team that reaches out, follows up, and closes deals — <b>so your next collab isn't a maybe, it's a yes.</b></p>
+      </div>
+      <div class="stat-cards reveal">
+        <div class="stat-card">
+          <div class="num gold-text">50+</div>
+          <div class="label">Creators Onboarded</div>
+        </div>
+        <div class="stat-card">
+          <div class="num gold-text">20+</div>
+          <div class="label">Brand Partners</div>
+        </div>
+        <div class="stat-card">
+          <div class="num gold-text">100%</div>
+          <div class="label">Direct Outreach</div>
+        </div>
+        <div class="stat-card">
+          <div class="num gold-text">0</div>
+          <div class="label">Hidden Fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="slash-divider reveal">
+  <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <line x1="0" y1="100" x2="1200" y2="20" stroke="url(#lg1)" stroke-width="1.5" opacity="0.5"/>
+  </svg>
+</div>
+
+<!-- ===== PROCESS / HOW WE WORK ===== -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">How We Work</span>
+      <h2 class="display">From <span class="gold-text">Unsigned</span> To Under Contract.</h2>
+      <p>Three moves. No fluff. Here's exactly what happens once you're in.</p>
+    </div>
+    <div class="process reveal">
+      <div class="process-step">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+        <span class="tag">Step 01</span>
+        <h3>We Onboard You</h3>
+        <p>You tell us your niche, your style, your audience. We build your creator profile and figure out exactly which brands you're a fit for.</p>
+      </div>
+      <div class="process-step">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></div>
+        <span class="tag">Step 02</span>
+        <h3>We Pitch Brands</h3>
+        <p>Our team reaches out directly to relevant brands on your behalf — pitching your content, your numbers, and your potential.</p>
+      </div>
+      <div class="process-step">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <span class="tag">Step 03</span>
+        <h3>We Close The Deal</h3>
+        <p>Once a brand's interested, we handle the back-and-forth — terms, deliverables, payment — and hand you a deal that's ready to sign.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CREATOR SPACE ===== -->
+<section id="creators">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Creator Space</span>
+      <h2 class="display">Faces Behind The <span class="gold-text">Content.</span></h2>
+      <p>A growing roster of creators we work with — every niche, every platform, every vibe.</p>
+    </div>
+    <div class="creator-grid reveal">
+      <div class="creator-card">
+        <div class="creator-avatar">-</div>
+        <div class="creator-info">
+          <h4>--</h4>
+          <div class="niche">--</div>
+          <div class="followers"><span>--</span><span>-</span></div>
+        </div>
+      </div>
+      <div class="creator-card">
+        <div class="creator-avatar">-</div>
+        <div class="creator-info">
+          <h4>--</h4>
+          <div class="niche">--</div>
+          <div class="followers"><span>--</span><span>-</span></div>
+        </div>
+      </div>
+      <div class="creator-card">
+        <div class="creator-avatar">-</div>
+        <div class="creator-info">
+          <h4>--</h4>
+          <div class="niche">--</div>
+          <div class="followers"><span>--</span><span>-</span></div>
+        </div>
+      </div>
+      <div class="creator-card">
+        <div class="creator-avatar">-</div>
+        <div class="creator-info">
+          <h4>--</h4>
+          <div class="niche">--</div>
+          <div class="followers"><span>--</span><span>-</span></div>
+        </div>
+      </div>
+      <div class="creator-card">
+        <div class="creator-avatar">-</div>
+        <div class="creator-info">
+          <h4>--</h4>
+          <div class="niche">--</div>
+          <div class="followers"><span>--</span><span>-</span></div>
+        </div>
+      </div>
+      <div class="creator-card">
+        <div class="creator-avatar">-</div>
+        <div class="creator-info">
+          <h4>--</h4>
+          <div class="niche">--</div>
+          <div class="followers"><span>--</span><span>-</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="placeholder-note"></p>
+  </div>
+</section>
+
+<!-- ===== BRAND SPACE ===== -->
+<section id="brands" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Brand Space</span>
+      <h2 class="display">Brands We've <span class="gold-text">Connected</span> With.</h2>
+      <p>The names our creators have already collaborated with — and the ones we're pitching next.</p>
+    </div>
+  </div>
+  <div class="brand-belt reveal">
+    <div class="brand-track">
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+    </div>
+  </div>
+  <div class="brand-belt reverse" style="border-top:none;">
+    <div class="brand-track reverse">
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+      <div class="brand-chip"><span class="dot"></span>--</div>
+    </div>
+  </div>
+  <div class="section-inner">
+    <p class="placeholder-note" style="margin-top:1.6rem;"></p>
+    <div style="margin-top:2.2rem;">
+      <a href="partner.html" class="btn-primary">Become A Brand Partner</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST SPACE ===== -->
+<section id="trust">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Trust Space</span>
+      <h2 class="display">Receipts, Not <span class="gold-text">Promises.</span></h2>
+      <p>Proof of the collabs we've landed. This space grows every time we close a deal — screenshots, campaign shots, and creator shoutouts land here.</p>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+        <div class="txt"><b>Collab Proof #1</b></div>
+      </div>
+      <div class="trust-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+        <div class="txt"><b>Collab Proof #2</b></div>
+      </div>
+      <div class="trust-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+        <div class="txt"><b>Collab Proof #3</b></div>
+      </div>
+      <div class="trust-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+        <div class="txt"><b>Collab Proof #4</b></div>
+      </div>
+    </div>
+
+    <div class="testimonial-row reveal">
+      <div class="testimonial">
+        <p>---</p>
+        <div class="who">— --</div>
+      </div>
+      <div class="testimonial">
+        <p>---</p>
+        <div class="who">—--</div>
+      </div>
+      <div class="testimonial">
+        <p>---</p>
+        <div class="who">—--</div>
+      </div>
+    </div>
+    <p class="placeholder-note"></p>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="cta-band" id="contact">
+  <div class="section-inner" style="text-align:center;">
+    <span class="eyebrow" style="justify-content:center;">Ready When You Are</span>
+    <h2 class="display" style="margin-top:0.9rem;">Your Next Brand Deal Starts With <span class="gold-text">One Message.</span></h2>
+    <p>Whether you're a creator looking for your first paid collab, or a brand looking for your next campaign face — we're one DM away.</p>
+    <div class="hero-ctas">
+      <button type="button" class="btn-primary" onclick="openEmailModal()">Email Us</button>
+      <a href="https://www.instagram.com/orvian.creatives?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="btn-ghost">Message On Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EMAIL MODAL ===== -->
+<div class="modal-overlay" id="emailModal">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeEmailModal()">✕</div>
+    <div class="icon-circle">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+    </div>
+    <h3>Reach Us <span class="gold-text">Directly</span></h3>
+    <p class="hint">Drop us a line for collabs, brand deals, or anything Orvian.</p>
+    <div class="email-pill">
+      <span id="emailText">orviancreatives@gmail.com</span>
+      <button class="copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
+    </div>
+    <a href="mailto:orviancreatives@gmail.com" class="btn-primary modal-cta">Open In Mail App</a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-mark">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="34" stroke="url(#lg1)" stroke-width="7"/>
+          <line x1="24" y1="80" x2="80" y2="18" stroke="url(#lg1)" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+        ORVIAN
+      </div>
+      <p>Connecting the next generation of creators with the brands who need them. No gatekeeping, ever.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#about">About</a>
+        <a href="#process">How We Work</a>
+        <a href="#creators">Creators</a>
+        <a href="#brands">Brands</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:orviancreatives@gmail.com">orviancreatives@gmail.com</a>
+        <a href="https://www.instagram.com/orvian.creatives?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Orvian Creatives. All rights reserved.</span>
+    <span>Creators First. Deals Second.</span>
+  </div>
+</footer>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // email modal
+  const emailModal = document.getElementById('emailModal');
+  function openEmailModal(){
+    emailModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeEmailModal(){
+    emailModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  emailModal.addEventListener('click', (e) => {
+    if (e.target === emailModal) closeEmailModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeEmailModal();
+  });
+  function copyEmail(){
+    const email = document.getElementById('emailText').textContent.trim();
+    const btn = document.getElementById('copyBtn');
+    const done = () => {
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done).catch(() => fallbackCopy(email, done));
+    } else {
+      fallbackCopy(email, done);
+    }
+  }
+  function fallbackCopy(text, cb){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+    cb();
+  }
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

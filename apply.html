@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply As A Creator — Orvian Creatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #060504;
+    --black-2: #0e0c0a;
+    --black-3: #171310;
+    --gold-1: #f4e5a1;
+    --gold-2: #d4af37;
+    --gold-3: #a8791f;
+    --gold-line: rgba(212,175,55,0.35);
+    --ivory: #f3ece0;
+    --grey: #948c7c;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--ivory);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+    font-weight:400;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2);color:#0a0a0a;}
+  a{color:inherit;text-decoration:none;}
+
+  .display{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.95;
+  }
+  .gold-text{
+    background:linear-gradient(115deg, var(--gold-3) 0%, var(--gold-1) 35%, var(--gold-2) 60%, var(--gold-1) 85%);
+    background-size:250% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 7s linear infinite;
+  }
+  @keyframes shine{0%{background-position:0% 50%;}100%{background-position:250% 50%;}}
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--gold-2);display:inline-block;}
+
+  .grain{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.3rem clamp(1.2rem,5vw,4rem);
+    background:linear-gradient(to bottom, rgba(6,5,4,0.9), transparent);
+    backdrop-filter:blur(6px);
+    transition:padding 0.3s ease, background 0.3s ease;
+  }
+  header.scrolled{
+    padding:0.8rem clamp(1.2rem,5vw,4rem);
+    background:rgba(6,5,4,0.85);
+    border-bottom:1px solid var(--gold-line);
+  }
+  .logo-mark{
+    display:flex;align-items:center;gap:0.7rem;
+    font-family:'Anton',sans-serif;
+    font-size:1.15rem;
+    letter-spacing:0.12em;
+  }
+  .logo-mark svg{width:32px;height:32px;display:block;}
+  .back-link{
+    display:flex;align-items:center;gap:0.5rem;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--grey);
+    transition:color 0.25s ease;
+  }
+  .back-link:hover{color:var(--gold-1);}
+  .back-link svg{width:16px;height:16px;stroke:currentColor;}
+
+  main{
+    padding:9rem 1.2rem 6rem;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .form-head{text-align:center;margin-bottom:3rem;}
+  .form-head .eyebrow{justify-content:center;}
+  .form-head h1{
+    margin-top:0.9rem;
+    font-size:clamp(2.1rem,6vw,3.4rem);
+  }
+  .form-head p{
+    margin-top:1rem;
+    color:var(--grey);
+    font-weight:300;
+    max-width:48ch;
+    margin-left:auto;margin-right:auto;
+    line-height:1.6;
+  }
+
+  form{
+    background:var(--black-2);
+    border:1px solid var(--gold-line);
+    border-radius:8px;
+    padding:clamp(1.6rem,5vw,3rem);
+  }
+
+  .field{margin-bottom:1.7rem;}
+  .field label{
+    display:block;
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    margin-bottom:0.6rem;
+    font-weight:600;
+  }
+  .field .req{color:var(--gold-1);}
+  .field input[type="text"],
+  .field input[type="email"],
+  .field textarea,
+  .field select{
+    width:100%;
+    background:var(--black-3);
+    border:1px solid rgba(243,236,224,0.15);
+    color:var(--ivory);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem;
+    padding:0.85rem 1rem;
+    border-radius:4px;
+    transition:border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus{
+    outline:none;
+    border-color:var(--gold-2);
+    box-shadow:0 0 0 3px rgba(212,175,55,0.12);
+  }
+  .field textarea{resize:vertical;min-height:90px;font-family:inherit;}
+
+  .field select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23d4af37' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 1rem center;
+    padding-right:2.6rem;
+    cursor:pointer;
+  }
+  .field select option{background:var(--black-3);color:var(--ivory);}
+
+  .toggle-group{
+    display:flex;
+    gap:0.8rem;
+  }
+  .toggle-option{
+    flex:1;
+    text-align:center;
+    padding:0.8rem 1rem;
+    border:1px solid rgba(243,236,224,0.15);
+    border-radius:4px;
+    cursor:pointer;
+    font-size:0.9rem;
+    letter-spacing:0.04em;
+    color:var(--grey);
+    transition:all 0.25s ease;
+    user-select:none;
+  }
+  .toggle-option:hover{border-color:var(--gold-line);color:var(--ivory);}
+  .toggle-option.active{
+    border-color:var(--gold-2);
+    background:rgba(212,175,55,0.1);
+    color:var(--gold-1);
+    font-weight:600;
+  }
+  .toggle-group input{display:none;}
+
+  .conditional{
+    margin-top:1rem;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+  }
+  .conditional.open{
+    max-height:200px;
+    opacity:1;
+  }
+
+  .hint-text{
+    margin-top:0.5rem;
+    font-size:0.78rem;
+    color:var(--grey);
+    font-weight:300;
+  }
+
+  .submit-btn{
+    width:100%;
+    margin-top:0.6rem;
+    padding:1.05rem 1.5rem;
+    font-size:0.9rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-weight:600;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    background:linear-gradient(100deg, var(--gold-3), var(--gold-1), var(--gold-2));
+    background-size:200% 100%;
+    color:#0a0806;
+    transition:all 0.3s ease;
+  }
+  .submit-btn:hover{
+    background-position:100% 0;
+    box-shadow:0 0 30px rgba(212,175,55,0.4);
+    transform:translateY(-2px);
+  }
+  .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+
+  .form-footer-note{
+    margin-top:1.2rem;
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--grey);
+    font-weight:300;
+  }
+
+  @media (max-width:520px){
+    .toggle-group{flex-direction:row;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header id="siteHeader">
+  <div class="logo-mark">
+    <svg viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#a8791f"/>
+          <stop offset="50%" stop-color="#f4e5a1"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="34" stroke="url(#lg1)" stroke-width="7"/>
+      <line x1="24" y1="80" x2="80" y2="18" stroke="url(#lg1)" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+    ORVIAN
+  </div>
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    Back To Home
+  </a>
+</header>
+
+<main>
+  <div class="form-head">
+    <span class="eyebrow">Creator Application</span>
+    <h1 class="display">Let's Get You <span class="gold-text">Signed.</span></h1>
+    <p>Fill this out honestly — the more we know about you, the better we can match you with brands that actually fit.</p>
+    <p style="margin-top:0.8rem;font-size:0.82rem;">Represent a brand instead? <a href="partner.html" style="color:var(--gold-2);text-decoration:underline;">Partner with us here →</a></p>
+  </div>
+
+  <form action="https://formsubmit.co/orviancreatives@gmail.com" method="POST" id="applyForm">
+    <!-- FormSubmit config -->
+    <input type="hidden" name="_subject" value="New Creator Application — Orvian Creatives">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none">
+
+    <div class="field">
+      <label for="name">Name <span class="req">*</span></label>
+      <input type="text" id="name" name="Name" placeholder="Your full name" required>
+    </div>
+
+    <div class="field">
+      <label for="handle">Your contact <span class="req">*</span></label>
+      <input type="text" id="handle" name="Your contact" placeholder="Your gmail/contact number" required>
+    </div>
+
+    <div class="field">
+      <label for="handle">Channel / Insta ID <span class="req">*</span></label>
+      <input type="text" id="handle" name="Channel/Insta ID" placeholder="@yourhandle" required>
+    </div>
+
+    <div class="field">
+      <label for="niche">Niche <span class="req">*</span></label>
+      <input type="text" id="niche" name="Niche" placeholder="e.g. Beauty, Tech, Fitness, Gaming" required>
+    </div>
+
+    <div class="field">
+      <label for="engagement">Engagement You Get On Your Content <span class="req">*</span></label>
+      <select id="engagement" name="Engagement Rate" required>
+        <option value="" disabled selected>Select your reach/views in last 30 days</option>
+        <option value="Under 1%">Under 10k</option>
+        <option value="1% – 3%">10k - 100k</option>
+        <option value="3% – 5%">100k - 500k</option>
+        <option value="5% – 10%">500k - 1M</option>
+        <option value="10%+">1M - 10M</option>
+        <option value="Not sure">10M+</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="followers">Subscribers / Followers <span class="req">*</span></label>
+      <select id="followers" name="Subscribers/Followers" required>
+        <option value="" disabled selected>Select your follower range</option>
+        <option value="Under 1K">Under 1K</option>
+        <option value="1K – 10K">1K – 10K</option>
+        <option value="10K – 50K">10K – 50K</option>
+        <option value="50K – 100K">50K – 100K</option>
+        <option value="100K – 500K">100K – 500K</option>
+        <option value="500K – 1M">500K – 1M</option>
+        <option value="1M+">1M+</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Are You Interested In Working With Us? <span class="req">*</span></label>
+      <div class="toggle-group" id="interestedToggle">
+        <label class="toggle-option" data-value="Yes">
+          <input type="radio" name="Interested In Working With Us" value="Yes" required>Yes
+        </label>
+        <label class="toggle-option" data-value="No">
+          <input type="radio" name="Interested In Working With Us" value="No">No
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="neglect">Do You Want To Neglect A Specific Kind Of Brand?</label>
+      <textarea id="neglect" name="Brands To Avoid" placeholder="e.g. No gambling, alcohol, or fast fashion brands — or leave blank if none"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Are You Looking For A Specific Brand? <span class="req">*</span></label>
+      <div class="toggle-group" id="lookingToggle">
+        <label class="toggle-option" data-value="Yes">
+          <input type="radio" name="Looking For Specific Brand" value="Yes" required>Yes
+        </label>
+        <label class="toggle-option" data-value="No">
+          <input type="radio" name="Looking For Specific Brand" value="No">No
+        </label>
+      </div>
+      <div class="conditional" id="brandConditional">
+        <input type="text" id="brandName" name="Specific Brand(s) Wanted" placeholder="Which brand(s) are you hoping to work with?">
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
+    <p class="form-footer-note">Your answers go straight to our inbox. We reply to serious applications within a few days.</p>
+  </form>
+</main>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // toggle button groups (styled radios)
+  function setupToggle(groupId, onChange){
+    const group = document.getElementById(groupId);
+    const options = group.querySelectorAll('.toggle-option');
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        const input = opt.querySelector('input');
+        input.checked = true;
+        if (onChange) onChange(opt.dataset.value);
+      });
+    });
+  }
+
+  setupToggle('interestedToggle');
+
+  const brandConditional = document.getElementById('brandConditional');
+  const brandNameInput = document.getElementById('brandName');
+  setupToggle('lookingToggle', (value) => {
+    if (value === 'Yes') {
+      brandConditional.classList.add('open');
+      brandNameInput.setAttribute('required', 'required');
+    } else {
+      brandConditional.classList.remove('open');
+      brandNameInput.removeAttribute('required');
+      brandNameInput.value = '';
+    }
+  });
+
+  // prevent double submit
+  document.getElementById('applyForm').addEventListener('submit', function(){
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+  });
+</script>
+
+</body>
+</html>

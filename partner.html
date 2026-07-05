@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner With Us — Orvian Creatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #060504;
+    --black-2: #0e0c0a;
+    --black-3: #171310;
+    --gold-1: #f4e5a1;
+    --gold-2: #d4af37;
+    --gold-3: #a8791f;
+    --gold-line: rgba(212,175,55,0.35);
+    --ivory: #f3ece0;
+    --grey: #948c7c;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--ivory);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+    font-weight:400;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2);color:#0a0a0a;}
+  a{color:inherit;text-decoration:none;}
+
+  .display{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.95;
+  }
+  .gold-text{
+    background:linear-gradient(115deg, var(--gold-3) 0%, var(--gold-1) 35%, var(--gold-2) 60%, var(--gold-1) 85%);
+    background-size:250% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 7s linear infinite;
+  }
+  @keyframes shine{0%{background-position:0% 50%;}100%{background-position:250% 50%;}}
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--gold-2);display:inline-block;}
+
+  .grain{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.3rem clamp(1.2rem,5vw,4rem);
+    background:linear-gradient(to bottom, rgba(6,5,4,0.9), transparent);
+    backdrop-filter:blur(6px);
+    transition:padding 0.3s ease, background 0.3s ease;
+  }
+  header.scrolled{
+    padding:0.8rem clamp(1.2rem,5vw,4rem);
+    background:rgba(6,5,4,0.85);
+    border-bottom:1px solid var(--gold-line);
+  }
+  .logo-mark{
+    display:flex;align-items:center;gap:0.7rem;
+    font-family:'Anton',sans-serif;
+    font-size:1.15rem;
+    letter-spacing:0.12em;
+  }
+  .logo-mark svg{width:32px;height:32px;display:block;}
+  .back-link{
+    display:flex;align-items:center;gap:0.5rem;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--grey);
+    transition:color 0.25s ease;
+  }
+  .back-link:hover{color:var(--gold-1);}
+  .back-link svg{width:16px;height:16px;stroke:currentColor;}
+
+  main{
+    padding:9rem 1.2rem 6rem;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .form-head{text-align:center;margin-bottom:3rem;}
+  .form-head .eyebrow{justify-content:center;}
+  .form-head h1{
+    margin-top:0.9rem;
+    font-size:clamp(2.1rem,6vw,3.4rem);
+  }
+  .form-head p{
+    margin-top:1rem;
+    color:var(--grey);
+    font-weight:300;
+    max-width:48ch;
+    margin-left:auto;margin-right:auto;
+    line-height:1.6;
+  }
+
+  form{
+    background:var(--black-2);
+    border:1px solid var(--gold-line);
+    border-radius:8px;
+    padding:clamp(1.6rem,5vw,3rem);
+  }
+
+  .field{margin-bottom:1.7rem;}
+  .field label{
+    display:block;
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-2);
+    margin-bottom:0.6rem;
+    font-weight:600;
+  }
+  .field .req{color:var(--gold-1);}
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="url"],
+  .field textarea,
+  .field select{
+    width:100%;
+    background:var(--black-3);
+    border:1px solid rgba(243,236,224,0.15);
+    color:var(--ivory);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem;
+    padding:0.85rem 1rem;
+    border-radius:4px;
+    transition:border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus{
+    outline:none;
+    border-color:var(--gold-2);
+    box-shadow:0 0 0 3px rgba(212,175,55,0.12);
+  }
+  .field textarea{resize:vertical;min-height:90px;font-family:inherit;}
+
+  .field select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23d4af37' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 1rem center;
+    padding-right:2.6rem;
+    cursor:pointer;
+  }
+  .field select option{background:var(--black-3);color:var(--ivory);}
+
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.2rem;
+  }
+
+  .toggle-group{
+    display:flex;
+    gap:0.8rem;
+  }
+  .toggle-option{
+    flex:1;
+    text-align:center;
+    padding:0.8rem 1rem;
+    border:1px solid rgba(243,236,224,0.15);
+    border-radius:4px;
+    cursor:pointer;
+    font-size:0.9rem;
+    letter-spacing:0.04em;
+    color:var(--grey);
+    transition:all 0.25s ease;
+    user-select:none;
+  }
+  .toggle-option:hover{border-color:var(--gold-line);color:var(--ivory);}
+  .toggle-option.active{
+    border-color:var(--gold-2);
+    background:rgba(212,175,55,0.1);
+    color:var(--gold-1);
+    font-weight:600;
+  }
+  .toggle-group input{display:none;}
+
+  .checkbox-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:0.7rem;
+  }
+  .checkbox-option{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.7rem 0.9rem;
+    border:1px solid rgba(243,236,224,0.15);
+    border-radius:4px;
+    cursor:pointer;
+    font-size:0.85rem;
+    color:var(--grey);
+    transition:all 0.25s ease;
+    user-select:none;
+  }
+  .checkbox-option:hover{border-color:var(--gold-line);color:var(--ivory);}
+  .checkbox-option.active{
+    border-color:var(--gold-2);
+    background:rgba(212,175,55,0.1);
+    color:var(--gold-1);
+  }
+  .checkbox-option input{display:none;}
+  .checkbox-option .box{
+    width:16px;height:16px;
+    border:1px solid var(--gold-line);
+    border-radius:3px;
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .checkbox-option.active .box{background:var(--gold-2);border-color:var(--gold-2);}
+  .checkbox-option .box svg{width:11px;height:11px;stroke:#0a0806;opacity:0;transition:opacity 0.2s;}
+  .checkbox-option.active .box svg{opacity:1;}
+
+  .hint-text{
+    margin-top:0.5rem;
+    font-size:0.78rem;
+    color:var(--grey);
+    font-weight:300;
+  }
+
+  .submit-btn{
+    width:100%;
+    margin-top:0.6rem;
+    padding:1.05rem 1.5rem;
+    font-size:0.9rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-weight:600;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    background:linear-gradient(100deg, var(--gold-3), var(--gold-1), var(--gold-2));
+    background-size:200% 100%;
+    color:#0a0806;
+    transition:all 0.3s ease;
+  }
+  .submit-btn:hover{
+    background-position:100% 0;
+    box-shadow:0 0 30px rgba(212,175,55,0.4);
+    transform:translateY(-2px);
+  }
+  .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+
+  .form-footer-note{
+    margin-top:1.2rem;
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--grey);
+    font-weight:300;
+  }
+
+  @media (max-width:560px){
+    .field-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header id="siteHeader">
+  <div class="logo-mark">
+    <svg viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#a8791f"/>
+          <stop offset="50%" stop-color="#f4e5a1"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="34" stroke="url(#lg1)" stroke-width="7"/>
+      <line x1="24" y1="80" x2="80" y2="18" stroke="url(#lg1)" stroke-width="7" stroke-linecap="round"/>
+    </svg>
+    ORVIAN
+  </div>
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    Back To Home
+  </a>
+</header>
+
+<main>
+  <div class="form-head">
+    <span class="eyebrow">Brand Partnership</span>
+    <h1 class="display">Let's Find Your <span class="gold-text">Next Face.</span></h1>
+    <p>Tell us about your brand and what you're looking for — we'll match you with creators from our roster who actually fit.</p>
+    <p style="margin-top:0.8rem;font-size:0.82rem;">A creator instead? <a href="apply.html" style="color:var(--gold-2);text-decoration:underline;">Apply here →</a></p>
+  </div>
+
+  <form action="https://formsubmit.co/orviancreatives@gmail.com" method="POST" id="partnerForm">
+    <!-- FormSubmit config -->
+    <input type="hidden" name="_subject" value="New Brand Partnership Inquiry — Orvian Creatives">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none">
+
+    <div class="field-row">
+      <div class="field">
+        <label for="brandName">Brand Name <span class="req">*</span></label>
+        <input type="text" id="brandName" name="Brand Name" placeholder="Your brand's name" required>
+      </div>
+      <div class="field">
+        <label for="contactPerson">Contact Person <span class="req">*</span></label>
+        <input type="text" id="contactPerson" name="Contact Person" placeholder="Your name" required>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="Email Address" placeholder="you@brand.com" required>
+      </div>
+      <div class="field">
+        <label for="website">Website / Instagram <span class="req">*</span></label>
+        <input type="text" id="website" name="Website/Instagram" placeholder="yourbrand.com or @yourbrand" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="industry">Industry / Niche <span class="req">*</span></label>
+      <input type="text" id="industry" name="Industry/Niche" placeholder="e.g. Skincare, Streetwear, Food & Beverage" required>
+    </div>
+
+    <div class="field">
+      <label>What Kind Of Creators Are You Looking For?</label>
+      <input type="text" id="industry" name="What Kind Of Creators Are You Looking For?" placeholder="e.g. Fitness, Tech, Beauty, Lifestyle, Gaming etc" required>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="budget">Campaign Budget <span class="req">*</span></label>
+        <select id="budget" name="Campaign Budget" required>
+          <option value="" disabled selected>Select a budget range</option>
+          <option value="Under ₹10,000">Under ₹10,000</option>
+          <option value="₹10,000 – ₹25,000">₹10,000 – ₹25,000</option>
+          <option value="₹25,000 – ₹50,000">₹25,000 – ₹50,000</option>
+          <option value="₹50,000 – ₹1,00,000">₹50,000 – ₹1,00,000</option>
+          <option value="₹1,00,000+">₹1,00,000+</option>
+          <option value="Product Exchange / Barter">Product Exchange / Barter</option>
+          <option value="Not decided yet">Not decided yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="timeline">Campaign Timeline <span class="req">*</span></label>
+        <select id="timeline" name="Campaign Timeline" required>
+          <option value="" disabled selected>Select a timeline</option>
+          <option value="ASAP / Within a week">ASAP / Within a week</option>
+          <option value="Within a month">Within a month</option>
+          <option value="1 – 3 months">1 – 3 months</option>
+          <option value="Ongoing / Long-term">Ongoing / Long-term</option>
+          <option value="Just exploring for now">Just exploring for now</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Have You Worked With Creators Before? <span class="req">*</span></label>
+      <div class="toggle-group" id="experienceToggle">
+        <label class="toggle-option" data-value="Yes">
+          <input type="radio" name="Worked With Creators Before" value="Yes" required>Yes
+        </label>
+        <label class="toggle-option" data-value="No">
+          <input type="radio" name="Worked With Creators Before" value="No">No
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="details">Tell Us About The Campaign <span class="req">*</span></label>
+      <textarea id="details" name="Campaign Details" placeholder="What are you looking to promote? Any specific deliverables, platforms, or creators in mind?" required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Partnership Request</button>
+    <p class="form-footer-note">Your details go straight to our inbox. We'll get back to you within a few business days.</p>
+  </form>
+</main>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // toggle button groups (styled radios)
+  function setupToggle(groupId){
+    const group = document.getElementById(groupId);
+    const options = group.querySelectorAll('.toggle-option');
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        opt.querySelector('input').checked = true;
+      });
+    });
+  }
+  setupToggle('experienceToggle');
+
+  // checkbox chips
+  const creatorTypeGroup = document.getElementById('creatorTypeGroup');
+  creatorTypeGroup.querySelectorAll('.checkbox-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      opt.classList.toggle('active');
+      const input = opt.querySelector('input');
+      input.checked = !input.checked;
+    });
+  });
+
+  // prevent double submit
+  document.getElementById('partnerForm').addEventListener('submit', function(){
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+  });
+</script>
+
+</body>
+</html>
